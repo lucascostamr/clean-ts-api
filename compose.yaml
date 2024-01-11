@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    volumes:
+      - ./src:/app/src
+      - package.json:/app/package.json
+      - package-lock.json:/app/package-lock.json
+    ports:
+      - '3000:3000'
+      - '3001:3001'
+    environment:
+      - NODE_PATH=../node_modules
