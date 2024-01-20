@@ -114,7 +114,7 @@ describe('DbAddAccount test', () => {
     await expect(promise).rejects.toThrow()
   })
 
-  test('Shoud throw up the error AddAccountRepository throws', async () => {
+  test('Should AddAccountRepository return account on success ', async () => {
     const { sut } = makeSut()
 
     const accountData = {
