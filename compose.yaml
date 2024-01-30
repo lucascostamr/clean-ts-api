@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  development:
+    container_name: development
+    build:
+      dockerfile: ./Dockerfile
+      args:
+        version: ${NODE_VERSION}
+    ports:
+      - "${REACT_APP_SERVER_PORT}:${REACT_APP_SERVER_PORT}"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    tty: true

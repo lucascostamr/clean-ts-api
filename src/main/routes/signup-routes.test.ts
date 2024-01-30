@@ -4,13 +4,12 @@ import { MongoHelper } from '../../infra/db/mongodb/helper/mongodb-helper'
 
 describe('SignUp Routes', () => {
   beforeAll(async () => {
-    await MongoHelper.connect(global.__MONGO_URI__)
+    await MongoHelper.connect()
   })
 
   afterAll(async () => {
     await MongoHelper.disconnect()
   })
-
   beforeEach(async () => {
     const accountCollection = MongoHelper.getCollection('accounts')
     await accountCollection.deleteMany({})
