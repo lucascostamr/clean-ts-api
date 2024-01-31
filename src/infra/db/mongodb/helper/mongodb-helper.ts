@@ -16,7 +16,7 @@ export const MongoHelper = {
 
   async connect (uri: string = '' as string): Promise<void> {
     if (!uri) {
-      await this.makeMongoMemory()
+      if (!this.mongoMemory) await this.makeMongoMemory()
       uri = this.mongoMemory?.getUri() as string
     }
 
@@ -25,11 +25,14 @@ export const MongoHelper = {
 
   async disconnect (): Promise<void> {
     await this.client?.close()
+    this.client = null
 
     if (this.mongoMemory) await this.stopMongoMemory()
   },
 
-  getCollection (name: string): Collection {
+  async getCollection (name: string): Promise<Collection> {
+    if (!this.client) await this.connect()
+
     return this.client.db().collection(name)
   },
 
