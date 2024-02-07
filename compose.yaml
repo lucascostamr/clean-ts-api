@@ -6,7 +6,7 @@ services:
     build:
       dockerfile: ./Dockerfile
       args:
-        version: ${NODE_VERSION}
+        version: ${AMAZON_LINUX_VERSION}
     ports:
       - "${REACT_APP_SERVER_PORT}:${REACT_APP_SERVER_PORT}"
     volumes:
