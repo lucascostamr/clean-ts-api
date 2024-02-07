@@ -1,1 +1,1 @@
-npx --no-install lint-staged
+docker exec -te TERM=xterm-256color development npx --no-install lint-staged
