@@ -1,16 +1,16 @@
 version: '3.8'
 
 services:
-  app:
-    tty: true
-    build: .
-    volumes:
-      - ./.git:/app/.git`
-      - ./src:/app/src
-      - ./package.json:/app/package.json
-      - ./package-lock.json:/app/package-lock.json
+  development:
+    container_name: development
+    build:
+      dockerfile: ./Dockerfile
+      args:
+        version: ${NODE_VERSION}
     ports:
-      - '3000:3000'
-      - '3001:3001'
-    environment:
-      - NODE_PATH=../node_modules
+      - "${REACT_APP_SERVER_PORT}:${REACT_APP_SERVER_PORT}"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    tty: true
