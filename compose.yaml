@@ -13,4 +13,10 @@ services:
       - .:/app
     env_file:
       - .env
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/
+    depends_on:
+      - mongo
     tty: true
+  mongo:
+    image: mongo:7.0.5-jammy
