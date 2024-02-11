@@ -7,7 +7,7 @@ const makeSut = (): AccountMongoRepository => {
 
 describe('Account MongoDb Repository', () => {
   beforeAll(async () => {
-    await MongoHelper.connect()
+    await MongoHelper.connect((process.env.MONGO_URI ?? ''))
   })
 
   afterAll(async () => {

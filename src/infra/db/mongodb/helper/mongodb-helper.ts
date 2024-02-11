@@ -2,29 +2,20 @@ import { type Collection, MongoClient } from 'mongodb'
 
 export const MongoHelper = {
   client: null as MongoClient | null,
-  mongoMemoryHelper: null as any | null,
+  uri: null as string | null,
 
-  async connect (uri: string = '' as string): Promise<void> {
-    if (!uri) {
-      this.mongoMemoryHelper = (await import('./mongodb-memory-server')).MongoMemoryHelper
-      await this.mongoMemoryHelper.makeMongoMemoryServer()
-
-      uri = this.mongoMemoryHelper.server?.getUri() as string
-    }
-
+  async connect (uri: string): Promise<void> {
     this.client = await MongoClient.connect(uri)
+    this.uri = uri
   },
 
   async disconnect (): Promise<void> {
     await this.client?.close()
     this.client = null
-
-    if (this.mongoMemoryHelper.server) await this.mongoMemoryHelper.stopMongoMemoryServer()
   },
 
   async getCollection (name: string): Promise<Collection> {
-    if (!this.client) await this.connect()
-
+    if (!this.client) await this.connect(this.uri as string)
     return this.client.db().collection(name)
   },
 
