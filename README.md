@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+ <img width=200px height=200px src="[https://i.imgur.com/6wj0hh6.jpg](https://w7.pngwing.com/pngs/211/76/png-transparent-application-programming-interface-computer-icons-representational-state-transfer-web-api-porticos-will-deliver-workshop-at-next-generation-dx-summit-in-dc-api-blue-text-rectangle.png)" alt="Project logo"></a>
 </p>
 
 <h3 align="center">Project Title</h3>
@@ -31,7 +31,7 @@
 - [Acknowledgments](#acknowledgement)
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [usage](#usage) for notes on how to start the API.
 
 ### Prerequisites
 What things you need to install the software and how to install them.
