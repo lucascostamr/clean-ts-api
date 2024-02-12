@@ -1,9 +1,9 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="[https://i.imgur.com/6wj0hh6.jpg](https://w7.pngwing.com/pngs/211/76/png-transparent-application-programming-interface-computer-icons-representational-state-transfer-web-api-porticos-will-deliver-workshop-at-next-generation-dx-summit-in-dc-api-blue-text-rectangle.png)" alt="Project logo"></a>
+ <img width=200px height=200px src="https://w7.pngwing.com/pngs/211/76/png-transparent-application-programming-interface-computer-icons-representational-state-transfer-web-api-porticos-will-deliver-workshop-at-next-generation-dx-summit-in-dc-api-blue-text-rectangle.png" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Project Title</h3>
+<h3 align="center">Clean Typescript API</h3>
 
 <div align="center">
 
