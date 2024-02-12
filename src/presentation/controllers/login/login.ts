@@ -2,6 +2,7 @@ import { type Controller, type HttpRequest, type HttpResponse } from '../../prot
 import { badRequest, ok } from '../../helpers/http-helper'
 import { MissingParamError } from '../../errors/missing-param-error'
 import { type EmailValidator } from '../signup/signup-protocols'
+import { InvalidParamError } from '../../errors'
 
 export class LoginController implements Controller {
   private readonly emailValidator: EmailValidator
@@ -19,7 +20,8 @@ export class LoginController implements Controller {
     if (!password) {
       return await new Promise(resolve => { resolve(badRequest(new MissingParamError('password'))) })
     }
-    this.emailValidator.isValid(email)
+    const isValid = this.emailValidator.isValid(email)
+    if (!isValid) return await new Promise(resolve => { resolve(badRequest(new InvalidParamError('email'))) })
     return await new Promise(resolve => { resolve(ok('')) })
   };
 }
