@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://w7.pngwing.com/pngs/211/76/png-transparent-application-programming-interface-computer-icons-representational-state-transfer-web-api-porticos-will-deliver-workshop-at-next-generation-dx-summit-in-dc-api-blue-text-rectangle.png" alt="Project logo"></a>
+ <img width=200px height=200px src="https://cdn-icons-png.flaticon.com/512/10169/10169741.png" alt="Project logo"></a>
 </p>
 
 <h3 align="center">Clean Typescript API</h3>
@@ -10,7 +10,6 @@
   [![Status](https://img.shields.io/badge/status-active-success.svg)]() 
   [![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
   [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
-  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
 
@@ -22,13 +21,8 @@
 
 ## 📝 Table of Contents
 - [Getting Started](#getting_started)
-- [Deployment](#deployment)
 - [Usage](#usage)
 - [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [usage](#usage) for notes on how to start the API.
