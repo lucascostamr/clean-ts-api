@@ -21,11 +21,11 @@
 
 ## 📝 Table of Contents
 - [Getting Started](#getting_started)
-- [Usage](#usage)
+- [Deploy](#deploy)
 - [Built Using](#built_using)
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [usage](#usage) for notes on how to start the API.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deploy](#deploy) for notes on how to start the API.
 
 ### Prerequisites
 What things you need to install the software and how to install them.
@@ -80,8 +80,8 @@ This will check and generate the coverage of tests
 npm run test:ci
 ```
 
-## 🎈 Usage <a name="usage"></a>
-To use the API just run:
+## 🎈 Deploy <a name="deploy"></a>
+To deploy the API just run:
 
 ```
 npm start
