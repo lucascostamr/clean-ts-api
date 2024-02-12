@@ -36,7 +36,7 @@ apt-get install docker
 ```
 
 ### Installing
-First you'll need to create and set up the .env file in the root directory. Just follow the .env.example file
+First you'll need to create and set up the .env file in the root directory. Just follow the .env.example file. 
 After setting up the .env file, you'll just need to run docker:
 
 ```
