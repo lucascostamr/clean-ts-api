@@ -1,5 +1,4 @@
-ARG version
-FROM amazonlinux:$version
+FROM amazonlinux:2023.3.20240117.0
 WORKDIR /app
 COPY ./package* .
 CMD [\

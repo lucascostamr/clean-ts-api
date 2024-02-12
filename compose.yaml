@@ -3,10 +3,7 @@ version: '3.8'
 services:
   development:
     container_name: development
-    build:
-      dockerfile: ./Dockerfile
-      args:
-        version: ${NODE_VERSION}
+    build: .
     ports:
       - "${SERVER_PORT}:${SERVER_PORT}"
     volumes:
@@ -19,4 +16,4 @@ services:
       - mongo
     tty: true
   mongo:
-    image: "mongo:${MONGO_VERSION}"
+    image: mongo:7.0.5-jammy
