@@ -2,6 +2,16 @@ import { SignUpController } from './signUp'
 import { MissingParamError, InvalidParamError, ServerError } from '../../errors'
 import { type EmailValidator, type AccountModel, type AddAccount, type AddAccountModel, type HttpRequest } from './signup-protocols'
 import { ok, serverError, badRequest } from '../../helpers/http-helper'
+import { type Validation } from '../../helpers/validation/validation'
+
+const makeValidation = (): Validation => {
+  class ValidationStub implements Validation {
+    validate (input: any): Error | null {
+      return null
+    }
+  }
+  return new ValidationStub()
+}
 
 const makeAddAccount = (): AddAccount => {
   class AddAccountStub implements AddAccount {
@@ -41,16 +51,19 @@ interface SutTypes {
   sut: SignUpController
   emailValidatorStub: EmailValidator
   addAccountStub: AddAccount
+  validationStub: Validation
 }
 
 const makeSut = (): SutTypes => {
+  const validationStub = makeValidation()
   const emailValidatorStub = makeEmailValidator()
   const addAccountStub = makeAddAccount()
-  const sut = new SignUpController(emailValidatorStub, addAccountStub)
+  const sut = new SignUpController(emailValidatorStub, addAccountStub, validationStub)
   return {
     sut,
     emailValidatorStub,
-    addAccountStub
+    addAccountStub,
+    validationStub
   }
 }
 
@@ -164,5 +177,13 @@ describe('SignUp Controller', () => {
     const { sut } = makeSut()
     const response = await sut.handle(makeFakeRequest())
     expect(response).toEqual(ok(makeFakeAccount()))
+  })
+
+  test('Should call Validation with correct values', async () => {
+    const { sut, validationStub } = makeSut()
+    const validateSpy = jest.spyOn(validationStub, 'validate')
+    const httpRequest = makeFakeRequest()
+    await sut.handle(httpRequest)
+    expect(validateSpy).toHaveBeenCalledWith(httpRequest.body)
   })
 })
