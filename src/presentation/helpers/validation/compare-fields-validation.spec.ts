@@ -11,4 +11,14 @@ describe('Compare Fields Validation', () => {
     const response = sut.validate(input)
     expect(response).toEqual(new InvalidParamError('passwordConfirmation'))
   })
+
+  test('Should return null on success', () => {
+    const sut = new CompareFieldsValidation('password', 'passwordConfirmation')
+    const input = {
+      password: 'any_password',
+      passwordConfirmation: 'any_password'
+    }
+    const response = sut.validate(input)
+    expect(response).toBe(null)
+  })
 })
