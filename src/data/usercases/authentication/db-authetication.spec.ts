@@ -1,10 +1,12 @@
-import { type AccountModel } from '../../../domain/models/account'
-import { type AuthenticationModel } from '../../../domain/usercases/authentication'
-import { type LoadAccountByEmailRepository } from '../../protocols/database/load-account-by-email-repository'
+import {
+  type AccountModel,
+  type AuthenticationModel,
+  type HashComparer,
+  type TokenGenerator,
+  type LoadAccountByEmailRepository,
+  type UpdateAccessTokenRepository
+} from './db-authentication-protocols'
 import { DbAuthentication } from './db-authentication'
-import { type HashComparer } from '../../protocols/criptograph/hash-comparer'
-import { type TokenGenerator } from '../../protocols/criptograph/token-generator'
-import { type UpdateAccessTokenRepository } from '../../protocols/database/update-access-token-repository'
 
 const makeLoadAccountByEmailRepository = (): LoadAccountByEmailRepository => {
   class LoadAccountByEmailRepositoryStub implements LoadAccountByEmailRepository {
