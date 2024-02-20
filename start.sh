@@ -1,6 +1,6 @@
 #!/bin/bash
 if ! docker inspect development &>/dev/null; then
-    echo "Development container is not running. Starting Development conatiner..."
+    echo "Development container is not running. Starting Development container..."
     rm -rf ./node_modules
     docker-compose up --build -d
     echo "Waiting docker building to finish..."
