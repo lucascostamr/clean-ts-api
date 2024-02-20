@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  development:
+  backend:
     container_name: development
     build: .
     ports:
@@ -17,3 +17,6 @@ services:
     tty: true
   mongo:
     image: mongo:7.0.5-jammy
+    ports:
+      - 27017:27017
+    

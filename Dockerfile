@@ -1,10 +1,10 @@
-FROM amazonlinux:2023.3.20240117.0
+FROM node:21.6.1-alpine3.19
 WORKDIR /app
 COPY ./package* .
 CMD [\
     "sh", "-c", "\
-    yum upgrade &&\
-    yum -y install nodejs git &&\
+    apk upgrade &&\
+    apk add git &&\
     npm i &&\
     echo '\n\nITS ALIVE' &&\
     sh"\
