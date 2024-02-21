@@ -1,6 +1,6 @@
 import { type Collection } from 'mongodb'
 import { MongoHelper } from '../helper/mongodb-helper'
-import { AccountMongoRepository } from './account'
+import { AccountMongoRepository } from './account-mongo-repository'
 import { type AddAccountModel } from '../../../../domain/usercases/add-account'
 
 const makeFakeAccount = (): AddAccountModel => ({
@@ -56,7 +56,7 @@ describe('Account MongoDb Repository', () => {
     expect(account).toBeNull()
   })
 
-  test('Should return an account on loadByEmail success', async () => {
+  test('Should update account access token on updateAccessToken success', async () => {
     const sut = makeSut()
     const result = await accountCollection.insertOne(makeFakeAccount())
     await sut.updateAccessToken(result.insertedId.toString(), 'any_token')
