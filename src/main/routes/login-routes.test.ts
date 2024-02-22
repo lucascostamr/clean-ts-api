@@ -49,5 +49,15 @@ describe('Login Routes', () => {
         })
         .expect(200)
     })
+
+    test('Should return 401 if no account found', async () => {
+      await request(app)
+        .post('/api/login')
+        .send({
+          email: 'lucascostamr812@gmail.com',
+          password: '123'
+        })
+        .expect(401)
+    })
   })
 })
