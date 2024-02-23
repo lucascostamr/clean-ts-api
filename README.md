@@ -37,9 +37,7 @@ apt-get install docker
 
 ### Installing
 First you'll need to create and set up the .env file in the root directory. Just follow the .env.example file. 
-After setting up the .env file, you'll just need to [deploy](#deploy):
-
-After docker compose finishes, you can interact with the conatiner running:
+After setting up the .env file, you'll just need to run:
 
 Linux/Unix:
 ```
