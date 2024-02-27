@@ -1,7 +1,7 @@
 import { SignUpController } from './signUp-controller'
-import { MissingParamError, ServerError } from '../../errors'
+import { MissingParamError, ServerError, EmailInUseError } from '../../errors'
 import { type AccountModel, type AddAccount, type AddAccountModel, type HttpRequest, type Authentication, type AuthenticationModel } from './signUp-controller-protocols'
-import { ok, serverError, badRequest } from '../../helpers/http/http-helper'
+import { ok, serverError, badRequest, forbidden } from '../../helpers/http/http-helper'
 import { type Validation } from '../../protocols/validation'
 
 const makeAuthentication = (): Authentication => {
@@ -24,7 +24,7 @@ const makeValidation = (): Validation => {
 
 const makeAddAccount = (): AddAccount => {
   class AddAccountStub implements AddAccount {
-    async add (account: AddAccountModel): Promise<AccountModel> {
+    async add (account: AddAccountModel): Promise<AccountModel | null> {
       return await new Promise(resolve => { resolve(makeFakeAccount()) })
     }
   }
@@ -84,6 +84,13 @@ describe('SignUp Controller', () => {
     jest.spyOn(addAccountStub, 'add').mockRejectedValueOnce(new Error())
     const response = await sut.handle(makeFakeRequest())
     expect(response).toEqual(serverError(new ServerError()))
+  })
+
+  test('Shoud return 403 if email in use is provided', async () => {
+    const { sut, addAccountStub } = makeSut()
+    jest.spyOn(addAccountStub, 'add').mockResolvedValueOnce(null)
+    const response = await sut.handle(makeFakeRequest())
+    expect(response).toEqual(forbidden(new EmailInUseError()))
   })
 
   test('Shoud return 200 if valid data is provided', async () => {
