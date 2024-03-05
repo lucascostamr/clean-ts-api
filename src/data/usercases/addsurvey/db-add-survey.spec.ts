@@ -37,4 +37,11 @@ describe('AddSurvey Usecase', () => {
     await sut.add(makeFakeSurvey())
     expect(addSpy).toHaveBeenCalledWith(makeFakeSurvey())
   })
+
+  test('Should throw if AddSurveyRepository throws', async () => {
+    const { sut, addSurveyRepositoryStub } = makeSut()
+    jest.spyOn(addSurveyRepositoryStub, 'add').mockRejectedValueOnce(new Error())
+    const response = sut.add(makeFakeSurvey())
+    await expect(response).rejects.toThrow(new Error())
+  })
 })
