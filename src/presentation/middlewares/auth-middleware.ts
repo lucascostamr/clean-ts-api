@@ -1,0 +1,8 @@
+import { forbidden } from '../helpers/http/http-helper'
+import { type HttpRequest, type HttpResponse, type Middleware } from '../protocols'
+
+export class AuthMiddleware implements Middleware {
+  async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
+    return await new Promise(resolve => { resolve(forbidden()) })
+  }
+}
