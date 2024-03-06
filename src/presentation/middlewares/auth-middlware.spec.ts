@@ -7,7 +7,7 @@ import { type HttpRequest } from '../protocols'
 
 const makeLoadAccountByTokenRepository = (): LoadAccountByTokenRepository => {
   class LoadAccountByTokenRepositoryStub implements LoadAccountByTokenRepository {
-    async loadByToken (token: string): Promise<AccountModel | null> {
+    async loadByToken (token: string, role?: string): Promise<AccountModel | null> {
       return await new Promise(resolve => { resolve(makeFakeAccount()) })
     }
   }
@@ -32,9 +32,9 @@ interface SutTypes {
   loadAccountByTokenRepositoryStub: LoadAccountByTokenRepository
 }
 
-const makeSut = (): SutTypes => {
+const makeSut = (role?: string): SutTypes => {
   const loadAccountByTokenRepositoryStub = makeLoadAccountByTokenRepository()
-  const sut = new AuthMiddleware(loadAccountByTokenRepositoryStub)
+  const sut = new AuthMiddleware(loadAccountByTokenRepositoryStub, role)
   return {
     sut,
     loadAccountByTokenRepositoryStub
@@ -49,10 +49,11 @@ describe('Authentication Middleware', () => {
   })
 
   test('Should call LoadAccountByTokenRepository with correct token', async () => {
-    const { sut, loadAccountByTokenRepositoryStub } = makeSut()
+    const role = 'any_role'
+    const { sut, loadAccountByTokenRepositoryStub } = makeSut(role)
     const loadByTokenSpy = jest.spyOn(loadAccountByTokenRepositoryStub, 'loadByToken')
     await sut.handle(makeFakeHeader())
-    expect(loadByTokenSpy).toHaveBeenCalledWith('any_token')
+    expect(loadByTokenSpy).toHaveBeenCalledWith('any_token', role)
   })
 
   test('Should return 403 if LoadAccountByTokenRepository fails', async () => {
