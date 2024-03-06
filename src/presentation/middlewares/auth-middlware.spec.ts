@@ -1,9 +1,7 @@
 import { AuthMiddleware } from './auth-middleware'
 import { forbidden, ok, serverError } from '../helpers/http/http-helper'
 import { AccessDeniedError } from '../errors'
-import { type LoadAccountByTokenRepository } from '../../data/protocols/database/account/load-account-by-token-repository'
-import { type AccountModel } from '../../domain/models/account'
-import { type HttpRequest } from '../protocols'
+import { type LoadAccountByTokenRepository, type AccountModel, type HttpRequest } from './auth-middleware-protocols'
 
 const makeLoadAccountByTokenRepository = (): LoadAccountByTokenRepository => {
   class LoadAccountByTokenRepositoryStub implements LoadAccountByTokenRepository {
