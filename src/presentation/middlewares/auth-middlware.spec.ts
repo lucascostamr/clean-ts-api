@@ -1,5 +1,5 @@
 import { AuthMiddleware } from './auth-middleware'
-import { forbidden, ok } from '../helpers/http/http-helper'
+import { forbidden, ok, serverError } from '../helpers/http/http-helper'
 import { AccessDeniedError } from '../errors'
 import { type LoadAccountByTokenRepository } from '../../data/protocols/database/account/load-account-by-token-repository'
 import { type AccountModel } from '../../domain/models/account'
@@ -48,21 +48,28 @@ describe('Authentication Middleware', () => {
     expect(response).toEqual(forbidden(new AccessDeniedError()))
   })
 
-  test('Should call LoadAccountByToken with correct token', async () => {
+  test('Should call LoadAccountByTokenRepository with correct token', async () => {
     const { sut, loadAccountByTokenRepositoryStub } = makeSut()
     const loadByTokenSpy = jest.spyOn(loadAccountByTokenRepositoryStub, 'loadByToken')
     await sut.handle(makeFakeHeader())
     expect(loadByTokenSpy).toHaveBeenCalledWith('any_token')
   })
 
-  test('Should return 403 if LoadAccountByToken fails', async () => {
+  test('Should return 403 if LoadAccountByTokenRepository fails', async () => {
     const { sut, loadAccountByTokenRepositoryStub } = makeSut()
     jest.spyOn(loadAccountByTokenRepositoryStub, 'loadByToken').mockResolvedValueOnce(null)
     const response = await sut.handle(makeFakeHeader())
     expect(response).toEqual(forbidden(new AccessDeniedError()))
   })
 
-  test('Should return 200 on LoadAccountByToken returns an accountId', async () => {
+  test('Should return 500 if LoadAccountByTokenRepository throws', async () => {
+    const { sut, loadAccountByTokenRepositoryStub } = makeSut()
+    jest.spyOn(loadAccountByTokenRepositoryStub, 'loadByToken').mockRejectedValueOnce(new Error())
+    const response = await sut.handle(makeFakeHeader())
+    expect(response).toEqual(serverError(new Error()))
+  })
+
+  test('Should return 200 on LoadAccountByTokenRepository returns an accountId', async () => {
     const { sut } = makeSut()
     const response = await sut.handle(makeFakeHeader())
     expect(response).toEqual(ok({ accountId: 'valid_id' }))
