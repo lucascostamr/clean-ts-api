@@ -14,11 +14,6 @@ export class DbLoadAccountByToken implements LoadAccountByToken {
     if (!token) return null
     const account = await this.loadAccountByTokenRepository.loadByToken(token, role)
     if (!account) return null
-    return {
-      id: 'any_id',
-      name: 'any_name',
-      email: 'any_email',
-      password: 'any_password'
-    }
+    return account
   }
 }
