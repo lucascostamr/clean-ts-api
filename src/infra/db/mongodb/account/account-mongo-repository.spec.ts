@@ -104,7 +104,7 @@ describe('Account MongoDb Repository', () => {
       expect(account?.password).toBe('any_password')
     })
 
-    test('Should return an account as admin on loadByToken with no role', async () => {
+    test('Should return an account if user\'s role admin on loadByToken with no role', async () => {
       const sut = makeSut()
       await accountCollection.insertOne({
         name: 'any_name',
