@@ -5,6 +5,16 @@ import { type Collection } from 'mongodb'
 import { sign } from 'jsonwebtoken'
 import env from '../config/env'
 
+const makeFakeSurvey = (): any => ({
+  question: 'any_question',
+  answers: [
+    {
+      image: 'any_image_url',
+      answer: 'any_answer'
+    }
+  ]
+})
+
 describe('Add Survey Routes', () => {
   let accountCollection: Collection
 
@@ -24,15 +34,7 @@ describe('Add Survey Routes', () => {
   test('Should return 403 on addSurvey with no accessToken', async () => {
     await request(app)
       .post('/api/surveys')
-      .send({
-        question: 'any_question',
-        answers: [
-          {
-            image: 'any_image_url',
-            answer: 'any_answer'
-          }
-        ]
-      })
+      .send(makeFakeSurvey())
       .expect(403)
   })
 
@@ -49,15 +51,7 @@ describe('Add Survey Routes', () => {
     await request(app)
       .post('/api/surveys')
       .set('x-access-token', accessToken)
-      .send({
-        question: 'any_question',
-        answers: [
-          {
-            image: 'any_image_url',
-            answer: 'any_answer'
-          }
-        ]
-      })
+      .send(makeFakeSurvey())
       .expect(204)
   })
 })
