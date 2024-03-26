@@ -1,6 +1,6 @@
 import { type Collection } from 'mongodb'
 import { MongoHelper } from '../helper/mongodb-helper'
-import { type AddSurveyModel } from '../../../../domain/models/add-survey'
+import { type AddSurveyModel } from '../../../../domain/usecases/add-survey'
 import { SurveyMongoRepository } from './survey-mongo-repository'
 
 const makeFakeSurvey = (): AddSurveyModel => ({

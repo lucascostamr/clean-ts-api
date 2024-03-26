@@ -1,5 +1,5 @@
 import { type AccountModel } from '../../../domain/models/account'
-import { type LoadAccountByToken } from '../../../domain/usercases/load-account-by-token'
+import { type LoadAccountByToken } from '../../../domain/usecases/load-account-by-token'
 import { type Decrypter } from '../../protocols/criptograph/decrypter'
 import { type LoadAccountByTokenRepository } from '../../protocols/database/account/load-account-by-token-repository'
 
