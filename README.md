@@ -7,7 +7,8 @@
 
 <div align="center">
   [![Node.js CI](https://github.com/lucascostamr/clean-ts-api/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/lucascostamr/clean-ts-api/actions/workflows/node.js.yml)
-  [![Status](https://img.shields.io/badge/status-active-success.svg)]()
+  [![Status](https://img.shields.io/badge/status-active-success.svg)]() 
+  
 </div>
 
 ---
