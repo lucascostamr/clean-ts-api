@@ -1,0 +1,24 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Compose up
+      run: |
+        echo "SERVER_PORT=3000" > .env
+        docker-compose up --build -d
+        while ! docker-compose logs --tail=1 | grep -q "ITS ALIVE"; do
+          sleep 1
+        done
+      env:
+        SERVER_PORT: 3000
+    - name: Run tests
+      run: docker exec development npm test
