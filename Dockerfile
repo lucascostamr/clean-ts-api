@@ -3,7 +3,6 @@ WORKDIR /app
 COPY ./package* .
 CMD [\
     "sh", "-c", "\
-    apk upgrade &&\
     apk add git &&\
     npm i &&\
     echo '\n\nITS ALIVE' &&\

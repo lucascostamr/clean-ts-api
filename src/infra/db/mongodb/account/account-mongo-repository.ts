@@ -1,10 +1,4 @@
-import { type AddAccountRepository } from '../../../../data/protocols/database/account/add-account-repository'
-import { type LoadAccountByEmailRepository } from '../../../../data/protocols/database/account/load-account-by-email-repository'
-import { type LoadAccountByTokenRepository } from '../../../../data/protocols/database/account/load-account-by-token-repository'
-import { type UpdateAccessTokenRepository } from '../../../../data/protocols/database/account/update-access-token-repository'
-import { type AccountModel } from '../../../../domain/models/account'
-import { type AddAccountModel } from '../../../../domain/usercases/add-account'
-import { MongoHelper } from '../helper/mongodb-helper'
+import { type AddAccountRepository, type LoadAccountByEmailRepository, type LoadAccountByTokenRepository, type UpdateAccessTokenRepository, type AccountModel, type AddAccountModel, MongoHelper } from './account-mongo-repository-protocols'
 
 export class AccountMongoRepository implements AddAccountRepository, LoadAccountByEmailRepository, UpdateAccessTokenRepository, LoadAccountByTokenRepository {
   async add (account: AddAccountModel): Promise<AccountModel> {

@@ -1,7 +1,6 @@
 import { type Collection } from 'mongodb'
-import { MongoHelper } from '../helper/mongodb-helper'
+import { MongoHelper, type AddAccountModel } from './account-mongo-repository-protocols'
 import { AccountMongoRepository } from './account-mongo-repository'
-import { type AddAccountModel } from '../../../../domain/usercases/add-account'
 
 const makeFakeAccount = (): AddAccountModel => ({
   name: 'any_name',
@@ -104,7 +103,7 @@ describe('Account MongoDb Repository', () => {
       expect(account?.password).toBe('any_password')
     })
 
-    test('Should return an account as admin on loadByToken with no role', async () => {
+    test('Should return an account if user\'s role admin on loadByToken with no role', async () => {
       const sut = makeSut()
       await accountCollection.insertOne({
         name: 'any_name',
