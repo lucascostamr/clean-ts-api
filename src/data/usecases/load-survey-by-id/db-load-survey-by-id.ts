@@ -5,13 +5,8 @@ import { type LoadSurveyByIdRepository } from '../../protocols/database/survey/l
 export class DbLoadSurveyById implements LoadSurveyById {
   constructor (private readonly loadSurveyByIdRepository: LoadSurveyByIdRepository) {}
 
-  async loadById (surveyId: string): Promise<SurveyModel> {
+  async loadById (surveyId: string): Promise<SurveyModel | null> {
     await this.loadSurveyByIdRepository.loadById(surveyId)
-    return {
-      id: 'any_id',
-      question: 'any_question',
-      answers: [{ image: 'any_image', answer: 'any_answer' }],
-      date: new Date()
-    }
+    return null
   }
 }
