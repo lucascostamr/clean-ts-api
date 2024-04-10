@@ -5,7 +5,7 @@ import { DbLoadSurveyById } from './db-load-survey-by-id'
 
 const makeLoadSurveyByIdRepository = (): LoadSurveyByIdRepository => {
   class LoadSurveyByIdRepositoryStub implements LoadSurveyByIdRepository {
-    async loadById (surveyId: string): Promise<SurveyModel> {
+    async loadById (surveyId: string): Promise<SurveyModel | null> {
       return await new Promise(resolve => { resolve(makeFakeSurvey()) })
     }
   }
@@ -50,5 +50,12 @@ describe('DbLoadSurveyById', () => {
     jest.spyOn(loadSurveyByIdRepositoryStub, 'loadById').mockRejectedValueOnce(new Error())
     const response = sut.loadById('any_id')
     await expect(response).rejects.toThrow(new Error())
+  })
+
+  test('Should return null if LoadSurveyByIdRepository loadById fails', async () => {
+    const { sut, loadSurveyByIdRepositoryStub } = makeSut()
+    jest.spyOn(loadSurveyByIdRepositoryStub, 'loadById').mockResolvedValueOnce(null)
+    const response = await sut.loadById('any_id')
+    expect(response).toBeNull()
   })
 })
