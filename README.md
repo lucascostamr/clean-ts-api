@@ -1,21 +1,11 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://cdn-icons-png.flaticon.com/512/10169/10169741.png" alt="Project logo"></a>
+ <img width=200px height=200px src="https://media.licdn.com/dms/image/C4D12AQFhlYow_0XQBA/article-cover_image-shrink_720_1280/0/1571543597550?e=2147483647&v=beta&t=eMSv7ImH2VbFDl2pcDJA4iFaerOpSghtaz7tJEuDGok" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Clean Typescript API</h3>
-
-<div align="center">
-  [![Node.js CI](https://github.com/lucascostamr/clean-ts-api/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/lucascostamr/clean-ts-api/actions/workflows/node.js.yml)
-  [![Status](https://img.shields.io/badge/status-active-success.svg)]() 
-  
-</div>
+<h3 align="center">Client Service</h3>
 
 ---
-
-<p align="center">
-  This API is a hands-on endeavor aimed at building a robust Authentication API for personal learning and skill development. Embracing Clean Architecture, SOLID principles, Test-Driven Development (TDD), TypeScript, Node.js, and MongoDB, this project offers an opportunity to delve into advanced software engineering concepts while creating a secure authentication system. Hope you find it useful!
-</p
 
 ## 📝 Table of Contents
 - [Getting Started](#getting_started)
@@ -23,7 +13,6 @@
 - [Built Using](#built_using)
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deploy](#deploy) for notes on how to start the API.
 
 ### Prerequisites
 What things you need to install the software and how to install them.
@@ -34,54 +23,40 @@ apt-get install docker
 ```
 
 ### Installing
-First you'll need to create and set up the .env file in the root directory. Just follow the .env.example file. 
+First you'll need to create and set up the .env file in the root directory. Just follow the .env file. 
 After setting up the .env file, you'll just need to run:
 
 Linux/Unix:
 ```
-./start.sh
+docker compose up --build
 ```
 Windows:
 ```
-./start.ps1
+docker compose up --build
 ```
 ## 🔧 Running the tests <a name = "tests"></a>
-Before running, make sure you're inside the docker container
+Before running, make sure you're inside the docker client service container
 
 ### All tests
 This will run all tests
 
 ```
-npm test
-```
-### Unit Tests
-This will run just the unit tests
-
-```
-npm run test:unit
-```
-### Integration Tests
-This will run just the integration tests
-
-```
-npm run test:integration
-```
-### Coverage Tests
-This will check and generate the coverage of tests
-
-```
-npm run test:ci
+mvn clean test
 ```
 
 ## 🎈 Deploy <a name="deploy"></a>
-To deploy the API just run:
+To deploy the Application just run, inside the client service container :
 
 ```
-npm start
+mvn spring-boot:run
 ```
+or
 
+```
+java -jar target/client-service-{version}.jar
+```
 ## ⛏️ Built Using <a name = "built_using"></a>
-- [MongoDB](https://www.mongodb.com/)
-- [Express](https://expressjs.com/)
-- [Typescript](https://www.typescriptlang.org/)
-- [NodeJs](https://nodejs.org/en/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [SpringBoot](https://spring.io/projects/spring-boot)
+- [Java](https://www.java.com)
+- [npm](https://www.npmjs.com/)
