@@ -15,9 +15,8 @@
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
 ### Prerequisites
-What things you need to install the software and how to install them.
 
-You'll need to have docker in your machine:
+You'll need to have docker installed in your machine:
 ```
 apt-get install docker
 ```
